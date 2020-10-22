@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -10,7 +10,6 @@ import {
 
 import { transcriptionState } from '../state'
 import { COLORS } from '../style'
-import { useGetTranscriptionStatus } from '../hooks'
 
 const Container = styled.div`
   width: 100%;
@@ -43,7 +42,10 @@ const transcriptionComponent = (transcription) => {
   return (
     <Transcription key={`transcription_${transcription.service}`}>
       <Logo>
-        <img src={`/logos/${transcription.service}.png`}></img>
+        <img
+          src={`/logos/${transcription.service}.png`}
+          alt={`${transcription.service} logotype`}
+        ></img>
         {transcription.status === 'IN_PROGRESS' && <ClipLoader size={25} />}
         {transcription.status === 'FAILED' && (
           <FontAwesomeIcon
@@ -80,7 +82,7 @@ export default function Transcriptions() {
 
   return (
     <Container>
-      <h1>Transcriptions</h1>
+      <h1>Status</h1>
       {transcriptions.map((t) => transcriptionComponent(t))}
     </Container>
   )

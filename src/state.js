@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from 'recoil'
+import { atom } from 'recoil'
 
 export const fileState = atom({
   key: 'file',
@@ -7,23 +7,7 @@ export const fileState = atom({
 
 export const transcriptionState = atom({
   key: 'transcription',
-  default: [
-    // {
-    //   service: 'aws',
-    //   status: 'INPROGRESS',
-    // },
-    // {
-    //   service: 'google',
-    //   status: 'FAILED',
-    // },
-    // {
-    //   service: 'ibm',
-    //   status: 'COMPLETED',
-    //   data: {
-    //     text: 'HEHEJEJ',
-    //   },
-    // },
-  ],
+  default: [],
 })
 
 export const loadingState = atom({

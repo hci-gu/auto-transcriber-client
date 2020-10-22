@@ -4,7 +4,7 @@ import axios from 'axios'
 import { fileState, transcriptionState } from './state'
 
 export const useFileUpload = () => {
-  const [_, setFile] = useRecoilState(fileState)
+  const [, setFile] = useRecoilState(fileState)
 
   const onDrop = useCallback(
     async (acceptedFiles) => {
@@ -18,7 +18,7 @@ export const useFileUpload = () => {
 }
 
 export const useGetTranscriptionStatus = (id) => {
-  const [_, setTranscriptionState] = useRecoilState(transcriptionState)
+  const [, setTranscriptionState] = useRecoilState(transcriptionState)
 
   useEffect(() => {
     let interval
