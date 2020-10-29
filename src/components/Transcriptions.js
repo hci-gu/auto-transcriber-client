@@ -23,6 +23,16 @@ const Container = styled.div`
 
 const Transcription = styled.div`
   margin-top: 40px;
+
+  > p {
+    background-color: #f5f5f5;
+    padding: 1em;
+    box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  > div {
+    padding: 10px;
+  }
 `
 
 const Logo = styled.div`
@@ -57,6 +67,13 @@ const transcriptionComponent = (transcription) => {
           <FontAwesomeIcon icon={faCheck} color={COLORS.pastelGreen} />
         )}
       </Logo>
+      {transcription.error && (
+        <div>
+          <span>
+            <strong>Transcription failed:</strong> {transcription.error.details}
+          </span>
+        </div>
+      )}
       {transcription.data && (
         <p>
           {transcription.data.text.split('\n').map((text) => {

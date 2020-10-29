@@ -63,8 +63,12 @@ export default function Services() {
         disable )
       </span>
       <ServiceList>
-        {services.map((service) => (
-          <Service {...service} onClick={() => onClick(service)}>
+        {services.map((service, i) => (
+          <Service
+            {...service}
+            onClick={() => onClick(service)}
+            key={`Service_${i}`}
+          >
             {(!service.active || service.disabled) && (
               <FontAwesomeIcon icon={faTimes} color={COLORS.fireBrick} />
             )}

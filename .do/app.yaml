@@ -1,0 +1,9 @@
+name: auto-transcriber-client
+static_sites:
+  - name: site
+    build_command: npm run build && mv build _static
+    github:
+      repo: hci-gu/auto-transcriber-client
+      branch: main
+      deploy_on_push: true
+    catchall_document: index.html

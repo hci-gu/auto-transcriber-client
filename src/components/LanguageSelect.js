@@ -11,7 +11,6 @@ const options = [
 ]
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +30,7 @@ export default function LanguageSelect() {
 
   return (
     <Container>
-      <span>Select spoken language to transcribe</span>
+      <span>Select language</span>
       <Select
         options={options}
         defaultValue={options[0]}

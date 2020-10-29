@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import LanguageSelect from '../components/LanguageSelect'
+import SpeakersSelect from '../components/SpeakersSelect'
 import Services from '../components/Services'
 import FileUpload from '../components/FileUpload'
 import UploadButton from '../components/UploadButton'
@@ -13,6 +14,13 @@ const Container = styled.div`
   align-items: center;
 `
 
+const Settings = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const Spacer = styled.div`
   height: 50px;
 `
@@ -20,7 +28,10 @@ const Spacer = styled.div`
 function Upload() {
   return (
     <Container>
-      <LanguageSelect />
+      <Settings>
+        <LanguageSelect />
+        <SpeakersSelect />
+      </Settings>
       <Services />
       <FileUpload />
       <Spacer />

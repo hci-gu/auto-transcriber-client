@@ -10,6 +10,11 @@ export const languageState = atom({
   default: 'en-US',
 })
 
+export const numberOfSpeakersState = atom({
+  key: 'number-of-speakers',
+  default: 2,
+})
+
 export const transcriptionState = atom({
   key: 'transcription',
   default: [],
