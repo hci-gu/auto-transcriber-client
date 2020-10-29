@@ -82,5 +82,5 @@ export const useChangeServicesOnLanguageSelect = () => {
         }))
       )
     }
-  }, [language, services, setServices])
+  }, [language, setServices])
 }
