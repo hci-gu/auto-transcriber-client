@@ -1,7 +1,13 @@
 import { useEffect, useCallback } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import axios from 'axios'
-import { fileState, errorState, transcriptionState } from './state'
+import {
+  fileState,
+  errorState,
+  transcriptionState,
+  languageState,
+  servicesState,
+} from './state'
 
 export const useFileUpload = () => {
   const [, setFile] = useRecoilState(fileState)
@@ -13,7 +19,7 @@ export const useFileUpload = () => {
       setFile(file)
       setError(null)
     },
-    [setFile]
+    [setFile, setError]
   )
 
   return onDrop
@@ -44,4 +50,37 @@ export const useGetTranscriptionStatus = (id) => {
       interval = setInterval(getStatus, 2500)
     }
   }, [id, setTranscriptionState])
+}
+
+const supportsSwedish = (service) => {
+  switch (service) {
+    case 'google':
+    case 'azure':
+      return true
+    default:
+      return false
+  }
+}
+
+export const useChangeServicesOnLanguageSelect = () => {
+  const language = useRecoilValue(languageState)
+  const [services, setServices] = useRecoilState(servicesState)
+
+  useEffect(() => {
+    if (language === 'sv-SE') {
+      setServices(
+        services.map((s) => ({
+          ...s,
+          disabled: !supportsSwedish(s.name),
+        }))
+      )
+    } else {
+      setServices(
+        services.map((s) => ({
+          ...s,
+          disabled: false,
+        }))
+      )
+    }
+  }, [language, services, setServices])
 }

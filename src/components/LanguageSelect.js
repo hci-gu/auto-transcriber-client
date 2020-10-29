@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Select from 'react-select'
 import { useRecoilState } from 'recoil'
 import { languageState } from '../state'
+import { useChangeServicesOnLanguageSelect } from '../hooks'
 
 const options = [
   { value: 'en-US', label: 'English' },
@@ -26,6 +27,7 @@ const Container = styled.div`
 
 export default function LanguageSelect() {
   const [, setLanguage] = useRecoilState(languageState)
+  useChangeServicesOnLanguageSelect()
 
   return (
     <Container>
