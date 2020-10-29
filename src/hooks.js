@@ -1,15 +1,17 @@
 import { useEffect, useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import axios from 'axios'
-import { fileState, transcriptionState } from './state'
+import { fileState, errorState, transcriptionState } from './state'
 
 export const useFileUpload = () => {
   const [, setFile] = useRecoilState(fileState)
+  const [, setError] = useRecoilState(errorState)
 
   const onDrop = useCallback(
     async (acceptedFiles) => {
       const file = acceptedFiles[0]
       setFile(file)
+      setError(null)
     },
     [setFile]
   )
@@ -32,7 +34,6 @@ export const useGetTranscriptionStatus = (id) => {
         !transcriptions.length ||
         !transcriptions.map((t) => t.status).includes('IN_PROGRESS')
       ) {
-        console.log('clear!')
         clearInterval(interval)
       }
 

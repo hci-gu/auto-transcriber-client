@@ -1,8 +1,13 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 
 export const fileState = atom({
   key: 'file',
   default: null,
+})
+
+export const languageState = atom({
+  key: 'language',
+  default: 'en-US',
 })
 
 export const transcriptionState = atom({
@@ -15,9 +20,27 @@ export const loadingState = atom({
   default: false,
 })
 
-export const services = ['Google cloud', 'Amazon AWS', '']
+export const errorState = atom({
+  key: 'error',
+  default: null,
+})
 
-export const service = atom({
-  key: 'service',
-  default: services[0],
+export const availableServices = ['aws', 'azure', 'google', 'ibm']
+
+export const servicesState = atom({
+  key: 'services',
+  default: availableServices.map((name) => ({
+    name,
+    active: true,
+    disabled: false,
+  })),
+})
+
+export const selectedSevices = selector({
+  key: 'selected-services',
+  get: ({ get }) => {
+    const services = get(servicesState)
+
+    return services.filter((s) => s.active && !s.disabled).map((s) => s.name)
+  },
 })

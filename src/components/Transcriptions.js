@@ -76,7 +76,6 @@ const transcriptionComponent = (transcription) => {
 
 export default function Transcriptions() {
   const [transcriptions] = useRecoilState(transcriptionState)
-  console.log({ transcriptions })
 
   if (!transcriptions || !transcriptions.length) return null
 
