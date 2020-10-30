@@ -10,6 +10,7 @@ import {
   languageState,
   selectedSevices,
 } from '../state'
+import { fileToWave } from '../utils/convertAudio'
 import axios from 'axios'
 import { COLORS } from '../style'
 
@@ -43,8 +44,9 @@ export default function UploadButton() {
     if (!file) return
     setLoading(true)
     setError(null)
+    const wav = await fileToWave(file)
     let formData = new FormData()
-    formData.append('audio', file)
+    formData.append('audio', wav)
 
     const query = `language=${language}&services=${services.join(',')}`
 
